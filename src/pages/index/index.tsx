@@ -2,11 +2,12 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-
+import { AtNavBar, AtDrawer } from 'taro-ui'
 import { add, minus } from '../../store/actions/counter'
-// console.log(add)
-
-import './index.less'
+import { fetchStart } from '../../store/actions/fetch'
+import { navigateTo } from '../../utils/tools'
+import './index.scss';
+import Drawer from '../../components/index/drawer';
 
 // #region 书写注意
 //
@@ -40,8 +41,9 @@ interface Index {
   props: IProps;
 }
 
-@connect(({ counter }) => ({
-  counter
+@connect(({ counter, fetchData }) => ({
+  counter,
+  fetchData:fetchData.fetchData
 }), (dispatch) => ({
   add () {
     // console.log(dispatch,add)
@@ -50,41 +52,55 @@ interface Index {
   dec () {
     dispatch(minus())
   },
-  // asyncAdd () {
-  //   dispatch(asyncAdd())
-  // }
+  fetchStart(){
+    dispatch(fetchStart())
+  }
+ 
 }))
 class Index extends Component {
-
-    /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
     config: Config = {
     navigationBarTitleText: '首页'
   }
-
+  constructor(props) {
+    super(props)
+    this.state = {
+       drawerShow:false
+    }
+  }
+  
   componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+    // console.log(this.props, nextProps)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount () {
+   
+   }
 
-  componentDidShow () { }
+  componentDidShow () { 
+    // this.props.fetchStart();
+  }
 
   componentDidHide () { }
 
   render () {
     return (
-      <View className='index'>
-        <Button className='add_btn' onClick={this.props.add}>+</Button>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={()=>{}}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
+      <View className="page page-index">
+        <AtNavBar
+          onClickLeftIcon={()=>{
+            this.setState({
+              drawerShow:true
+            })
+          }}
+          title='首页原生图分类'
+          leftIconType='bullet-list'
+        />
+       <Drawer 
+        drawerShow={this.state.drawerShow} 
+        onClose={()=>{
+          this.setState({
+              drawerShow:false
+            })
+        }}/>
       </View>
     )
   }

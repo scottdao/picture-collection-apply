@@ -30,7 +30,8 @@ const config = {
     ]
   },
   plugins: [
-    '@tarojs/plugin-less',
+    // '@tarojs/plugin-less',
+    '@tarojs/plugin-sass',
     '@tarojs/plugin-terser'
   ],
   defineConstants: {
@@ -40,7 +41,7 @@ const config = {
       autoprefixer: {
         enable: true,
         config: {
-          browsers: [
+          overrideBrowserslist: [
             'last 3 versions',
             'Android >= 4.1',
             'ios >= 8'
@@ -71,6 +72,7 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    esnextModules: ['taro-ui'],
     postcss: {
       autoprefixer: {
         enable: true,
