@@ -1,7 +1,16 @@
 import { ComponentClass } from 'react';
 import Taro, { Component, Config } from '@tarojs/taro';
 import { AtDrawer } from 'taro-ui'
+import './scss/drawer.scss';
 class Drawer extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       activeIndex:0
+    }
+  }
+  
   componentDidMount () {}
 
   componentDidShow () {}
@@ -11,7 +20,8 @@ class Drawer extends Component {
   componentDidCatchError () {}
 
   render () {
-    const {drawerShow, onClose} = this.props;
+    const {drawerShow, onClose, onTextClick} = this.props;
+    const { activeIndex } = this.state;
     const items = [
         {label:"性感"},
         {label:"健身"},
@@ -30,13 +40,23 @@ class Drawer extends Component {
         <AtDrawer 
             show={drawerShow} 
             mask 
-            width = '80px'
+            width = '100px'
             onClose={onClose} 
         >
-            <View className='drawer-item'>优先展示items里的数据</View>
-            <View className='drawer-item'>如果items没有数据就会展示children</View>
-            <View className='drawer-item'>这是自定义内容 <AtIcon value='home' size='20' /></View>
-            <View className='drawer-item'>这是自定义内容</View>
+          <View className="view-left-item">
+            {
+              items.map((item, index)=> <View 
+              className={activeIndex===index?'drawer-item active-item':"drawer-item"} 
+              key={item.label}
+              onClick={()=>{
+                this.setState({
+                  activeIndex:index
+                })
+                onTextClick(item.label)
+              }}
+              >{item.label}</View>)
+            }
+          </View>
         </AtDrawer>
     )
   }

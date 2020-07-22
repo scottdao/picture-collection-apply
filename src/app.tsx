@@ -32,7 +32,15 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-  componentDidMount () {}
+  componentDidMount () {
+  wx.getSystemInfo({
+    success: function (res) {
+      console.log(res)
+      let height = res.windowHeight - res.statusBarHeight
+    }
+  });
+
+}
 
   componentDidShow () {}
 

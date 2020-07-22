@@ -8,7 +8,7 @@ import { fetchStart } from '../../store/actions/fetch'
 import { navigateTo } from '../../utils/tools'
 import './index.scss';
 import Drawer from '../../components/index/drawer';
-
+import List from '../../components/index/list'
 // #region 书写注意
 //
 // 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
@@ -64,7 +64,8 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       drawerShow:false
+       drawerShow:false,
+       currentWd:''
     }
   }
   
@@ -83,6 +84,7 @@ class Index extends Component {
   componentDidHide () { }
 
   render () {
+    const { currentWd } = this.state;
     return (
       <View className="page page-index">
         <AtNavBar
@@ -96,11 +98,17 @@ class Index extends Component {
         />
        <Drawer 
         drawerShow={this.state.drawerShow} 
+        onTextClick = {(text)=>{
+          this.setState({
+            currentWd:text
+          })
+        }}
         onClose={()=>{
           this.setState({
               drawerShow:false
             })
         }}/>
+        <List currentWd={currentWd}/>
       </View>
     )
   }
