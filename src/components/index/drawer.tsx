@@ -33,8 +33,8 @@ class Drawer extends Component {
         {label:"gif动图"},
         {label:"绘画"},
         {label:"婚礼"},
-        {label:"个人"},
-        {label:"图片制作"}
+        {label:"图片制作"},
+        {label:"个人创建"},
         ]
     return (
         <AtDrawer 

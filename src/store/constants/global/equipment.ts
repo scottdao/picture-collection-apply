@@ -1,1 +1,0 @@
-export EQUIP_INFO = 'EQUIP_INFO';

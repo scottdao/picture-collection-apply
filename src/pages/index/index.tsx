@@ -5,6 +5,7 @@ import { connect } from '@tarojs/redux'
 import { AtNavBar, AtDrawer } from 'taro-ui'
 import { add, minus } from '../../store/actions/counter'
 import { fetchStart } from '../../store/actions/fetch'
+import { equipInfo }  from '../../store/actions/global/equipments'
 import { navigateTo } from '../../utils/tools'
 import './index.scss';
 import Drawer from '../../components/index/drawer';
@@ -41,9 +42,10 @@ interface Index {
   props: IProps;
 }
 
-@connect(({ counter, fetchData }) => ({
+@connect(({ counter, fetchData, equipInfo }) => ({
   counter,
-  fetchData:fetchData.fetchData
+  fetchData:fetchData.fetchData,
+  equipInfo:equipInfo.equipInfo
 }), (dispatch) => ({
   add () {
     // console.log(dispatch,add)
@@ -55,7 +57,9 @@ interface Index {
   fetchStart(){
     dispatch(fetchStart())
   }
- 
+ getEquipmentInfo(res){
+   dispatch(equipInfo(res))
+ }
 }))
 class Index extends Component {
     config: Config = {
@@ -65,7 +69,7 @@ class Index extends Component {
     super(props)
     this.state = {
        drawerShow:false,
-       currentWd:''
+       currentWd:'性感'
     }
   }
   
@@ -78,6 +82,12 @@ class Index extends Component {
    }
 
   componentDidShow () { 
+     wx.getSystemInfo({
+      success:  (res) =>{
+        this.props.getEquipmentInfo(res)
+        let height = res.windowHeight - res.statusBarHeight
+      }
+    });
     // this.props.fetchStart();
   }
 
@@ -85,6 +95,7 @@ class Index extends Component {
 
   render () {
     const { currentWd } = this.state;
+    const { equipInfo }= this.props;
     return (
       <View className="page page-index">
         <AtNavBar
@@ -93,7 +104,7 @@ class Index extends Component {
               drawerShow:true
             })
           }}
-          title='首页原生图分类'
+          title={`${currentWd}图分类`}
           leftIconType='bullet-list'
         />
        <Drawer 
@@ -108,7 +119,7 @@ class Index extends Component {
               drawerShow:false
             })
         }}/>
-        <List currentWd={currentWd}/>
+        <List currentWd={currentWd} equipInfo={equipInfo}/>
       </View>
     )
   }

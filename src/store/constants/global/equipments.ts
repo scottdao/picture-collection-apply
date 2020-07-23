@@ -1,0 +1,1 @@
+export const  EQUIP_INFO = 'EQUIP_INFO';

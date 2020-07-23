@@ -2,6 +2,8 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import Index from './pages/index/index'
 import configStore from './store'
+ // console.log(configStore)
+
 import './app.scss';
 // taro-ui样式引入
 import 'taro-ui/dist/style/index.scss'
@@ -33,12 +35,7 @@ class App extends Component {
     }
   }
   componentDidMount () {
-  wx.getSystemInfo({
-    success: function (res) {
-      console.log(res)
-      let height = res.windowHeight - res.statusBarHeight
-    }
-  });
+
 
 }
 
