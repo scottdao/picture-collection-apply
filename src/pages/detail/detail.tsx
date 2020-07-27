@@ -51,7 +51,7 @@ class Detail extends Component {
   render () {
     return( 
         <View className="page">
-           123324
+           单类图片详情
         </View>
         
     )

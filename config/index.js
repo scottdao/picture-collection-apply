@@ -1,3 +1,4 @@
+const path = require('path');
 const config = {
   projectName: 'avatarApply',
   date: '2020-7-3',
@@ -92,6 +93,9 @@ const config = {
         }
       }
     }
+  },
+  alias:{
+    "@":path.resolve(__dirname, '..', "src")
   }
 }
 
