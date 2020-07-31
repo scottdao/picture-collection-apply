@@ -2,7 +2,7 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { AtNavBar, AtDrawer } from 'taro-ui'
+import { AtNavBar, AtDrawer, AtToast } from 'taro-ui'
 import { add, minus } from '@/store/actions/counter'
 import { fetchStart } from '@/store/actions/fetch'
 import { equipInfo }  from '@/store/actions/global/equipments'
@@ -72,16 +72,16 @@ class Index extends Component {
        currentWd:'性感'
     }
   }
-  
+
   componentWillReceiveProps (nextProps) {
     // console.log(this.props, nextProps)
   }
 
   componentWillUnmount () {
-   
+
    }
 
-  componentDidShow () { 
+  componentDidShow () {
      wx.getSystemInfo({
       success:  (res) =>{
         this.props.getEquipmentInfo(res)
@@ -104,11 +104,13 @@ class Index extends Component {
               drawerShow:true
             })
           }}
+          onClickRgIconSt={()=>{console.log('个人信息')}}
           title={`${currentWd}图分类`}
           leftIconType='bullet-list'
+          rightFirstIconType='user'
         />
-       <Drawer 
-        drawerShow={this.state.drawerShow} 
+       <Drawer
+        drawerShow={this.state.drawerShow}
         onTextClick = {(text)=>{
           this.setState({
             currentWd:text

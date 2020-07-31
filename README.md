@@ -36,3 +36,7 @@ taro-study学习与开发圣地
     }
     })
 ```
+
+##### git message
+- npm install commitizen cz-conventional-changelog -g
+- npm install -D commitizen cz-conventional-changelog  cz-customizable

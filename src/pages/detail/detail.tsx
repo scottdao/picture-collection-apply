@@ -6,7 +6,7 @@ import { AtNavBar } from 'taro-ui'
 import './detail.scss'
 
 type PageStateProps = {
- 
+
 }
 
 type PageDispatchProps = {
@@ -26,9 +26,9 @@ interface Detail {
 }
 
 // @connect(({  }) => ({
-  
+
 // }), (dispatch) => ({
-  
+
 // }))
 class Detail extends Component {
     config: Config = {
@@ -40,20 +40,20 @@ class Detail extends Component {
   }
 
   componentWillUnmount () {
-   
+
    }
 
-  componentDidShow () { 
+  componentDidShow () {
   }
 
   componentDidHide () { }
 
   render () {
-    return( 
+    return(
         <View className="page">
-           单类图片详情
+           单类图片详情集合
         </View>
-        
+
     )
   }
 }
