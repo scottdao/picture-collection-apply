@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro';
 import {BASE_URL} from './url';
-// import { Message } from '@/components/common/InfoTips'
+import Taro from '@tarojs/taro'
+// import { MessageInfo } from '@/components/common/InfoTips'
 export const requestApi = async (params, path, id) => {
   let url = '';
   if (id) {
@@ -22,7 +23,11 @@ export const requestApi = async (params, path, id) => {
     fail(error){
         console.log(error)
         errorCb && errorCb(error)
-        // Message('error', error.msg)
+         Taro.showToast({
+            title: `${error.msg}失败`,
+            icon: 'none',
+            duration: 2000
+          })
     },
     success(data){
       successCb && successCb(data)

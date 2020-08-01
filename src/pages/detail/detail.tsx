@@ -49,6 +49,7 @@ class Detail extends Component {
   componentDidHide () { }
 
   render () {
+    console.log(this.$router.params, '单类图片路由参数')
     return(
         <View className="page">
            单类图片详情集合

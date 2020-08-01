@@ -2,10 +2,10 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config, useState, useEffect, usePageScroll, useReachBottom  } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtAvatar   } from "taro-ui"
-import './index.scss';
 import _ from'lodash';
+import { navigateTo } from '@/utils/tools'
+import './index.scss';
 type PageOwnProps = {}
-
 type PageState = {}
 const ClassifyContainer = ()=> {
    const [state, setstate] = useState(false);
@@ -17,7 +17,14 @@ const ClassifyContainer = ()=> {
              {
                 listData.map(items=> <View className='classifyContainer-row' key={items}>
                     {
-                        items.map(item=> <View className='classifyContainer-col' key={item}>
+                        items.map(item=> <View className='classifyContainer-col' key={item} onClick={()=>{
+                          //  Taro.showToast({
+                          //     title: '成功',
+                          //     icon: 'success',
+                          //     duration: 2000
+                          //   })
+                           navigateTo(`/pages/detail/detail?detailData=${item}`)
+                          }}>
                             <View  style="height:250rpx;width:100%; background-color: pink;">
                                 <image  style="width:100%;height:100%;border-radius:10rpx;" src={url}/>
                             </View>
