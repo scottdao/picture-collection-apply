@@ -10,7 +10,7 @@ type PageState = {}
 const ClassifyContainer = ()=> {
    const [state, setstate] = useState(false);
 
-   const url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595524401746&di=f5fa7fc12a14565a3dfd0f63356ca8a6&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fcc11728b4710b912d81c7b33c3fdfc0393452219.jpg'
+    const url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595524401746&di=f5fa7fc12a14565a3dfd0f63356ca8a6&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fcc11728b4710b912d81c7b33c3fdfc0393452219.jpg'
     const listData = _.chunk([0,1,2,3,4,5,6,7,8,9,8,8,0,3,4,4,4,5,5,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7], 3)
     return (
         <View className='classifyContainer' >

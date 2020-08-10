@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import { View, Button, Text, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtLoadMore, AtActivityIndicator } from 'taro-ui';
 import _ from 'lodash';
@@ -56,51 +56,39 @@ class Classification extends Component {
   }
 
   componentDidHide () { }
-  onReachBottom(){
-    console.log('下拉加载')
+  onScrollToLower(e) {
+    console.log(e)
+    this.setState({downLoading:true})
+    setTimeout(() => {
+      this.setState({downLoading:false})
+    }, 2000);
   }
-  moveMobileStart(e){
-    if(!e || !e.touches){
-      return false
-    }
-    const [touch] = e.changedTouches
-   // console.log(touch,'start')
-    this.sy = touch.clientY;
-    this.sx = touch.clientX;
-  }
-  moveMobileEnd(e){
-    if(!e || !e.touches){
-      return false
-    }
-    const [touch] = e.changedTouches;
-     let ey = touch.clientY;
-     let ex = touch.clientX;
-     if(this.sy-ey>0){
-       let cha = this.sx-ex
-       if(-50<= cha && cha<=50 ){
-        // console.log('横着上拉')
-         this.setState({downLoading:true})
-         setTimeout(() => {
-           this.setState({downLoading:false})
-         }, 2000);
-       }
-     }else{
-       this.setState({downLoading:false})
-     }
+  onScroll(e){
+   // console.log(e.detail)
   }
   render () {
     const equipInfo = this.props.equipInfo;
     const { downLoading } = this.state;
+    const scrollTop = 0
+    const Threshold = 20
     return(
-      <scroll-view scroll-y={true} style={`height:${_.get(equipInfo, 'windowHeight', 740)}px;background-color:#eee;`} >
-        <View className="classify-list" id='classify-list' onTouchStart={this.moveMobileStart} onTouchEnd={this.moveMobileEnd} >
+      <ScrollView
+        scrollY
+        scrollWithAnimation
+        scrollTop={scrollTop}
+        lowerThreshold={Threshold}
+        upperThreshold={Threshold}
+        style={`height:${_.get(equipInfo, 'windowHeight', 740)}px;background-color:#eee;`}
+         onScrollToLower={this.onScrollToLower.bind(this)}
+        onScroll={this.onScroll}
+      >
+        <View className="classify-list" id='classify-list'>
             <ClassifyContainer />
             <View style="position:relative;padding:20rpx;">
               <AtActivityIndicator size={32} content='加载中...' isOpened={downLoading} mode='center'/>
             </View>
         </View>
-
-      </scroll-view>
+      </ScrollView>
 
     )
   }
