@@ -1,0 +1,18 @@
+@import '../../var.scss';
+.view-left-item{
+    text-align: center;
+    line-height: 3;
+    .drawer-item{
+       //  text-align: center;
+        color:$base-font-color;
+        font-size: $base-font-size;
+    }
+    .active-item{
+        background-color: #fff;
+        color: red;
+        font-size: $big-font-size;
+    }
+}
+.at-drawer .at-drawer__content{
+    background-color: $light-font-color;
+}

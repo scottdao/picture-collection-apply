@@ -1,0 +1,41 @@
+@import '../../var.scss';
+.list-all{
+    // margin-bottom: 40px;
+    .list-banner{
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        .set-banner{
+            flex: 0 1 200px;
+            .set-banner-background{
+               background-color: $base-background-color;
+               border-radius: 4px;
+               height:120px;
+            }
+           .set-banner-tilte{
+               text-align: center;
+               font-size: $sim-font-size;
+               color: $mid-font-color;
+               margin-top: 4px;
+           }
+        }
+    }
+    .bus-zwc{
+        height: 250px;
+        width: 94%;
+        border: 1px solid $light-font-color;
+        margin: 20px auto;
+        border-radius: 4px;
+    }
+    .list-hot{
+        margin-top: 20px;
+        .hot-head{
+            margin-left: 3%;
+            color: #333333;
+            font-size: 24rpx;
+        }
+        .list-banner{
+            margin-top: 10px;
+        }
+    }
+}
