@@ -87,7 +87,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-customizable"
+      "path": "web/node_modules/cz-customizable"
     }
   }
 }
