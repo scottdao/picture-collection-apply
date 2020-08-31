@@ -2,7 +2,8 @@ import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Swiper, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { AtNavBar } from 'taro-ui'
+import { AtNavBar } from 'taro-ui';
+import _ from 'lodash';
 import './detail.scss'
 
 type PageStateProps = {
@@ -25,11 +26,13 @@ interface Detail {
   props: IProps;
 }
 
-// @connect(({  }) => ({
-
-// }), (dispatch) => ({
-
-// }))
+@connect(({ equipInfo }) => ({
+  equipInfo:equipInfo.equipInfo
+}), (dispatch) => ({
+//   getEquipmentInfo(res){
+//    dispatch(equipInfo(res))
+//  }
+}))
 class Detail extends Component {
     config: Config = {
     navigationBarTitleText: '详情页'
@@ -49,6 +52,7 @@ class Detail extends Component {
   componentDidHide () { }
 
   render () {
+    const equipInfo = this.props.equipInfo;
     console.log(this.$router.params, '单类图片路由参数')
     const url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595524401746&di=f5fa7fc12a14565a3dfd0f63356ca8a6&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fcc11728b4710b912d81c7b33c3fdfc0393452219.jpg'
     const imgList = [0,1,2,3,4,5,6];
@@ -62,7 +66,7 @@ class Detail extends Component {
           scrollTop={scrollTop}
           lowerThreshold={Threshold}
           upperThreshold={Threshold}
-          // style={`height:${_.get(equipInfo, 'windowHeight', 740)}px;background-color:#eee;`}
+          style={`height:${_.get(equipInfo, 'windowHeight', 740)}px;background-color:#eee;`}
         >
             <Swiper
               className='swiper-contain'
@@ -90,6 +94,16 @@ class Detail extends Component {
             </View>
             <View className="detail-zwf">
               占位符
+            </View>
+            <View style="position:absolute;bottom:40px;left:23%;">
+                  <Button size='mini' type='primary'>全部预览</Button>
+                  <Button size='mini' onClick={()=>{
+                    Taro.previewImage({
+                        current: url, // 当前显示图片的http链接
+                        urls: [url] // 需要预览的图片http链接列表
+                      })
+                  }}>单图预览</Button>
+                  <Button size='mini' openType="share" >分享</Button>
             </View>
         </ScrollView>
 
