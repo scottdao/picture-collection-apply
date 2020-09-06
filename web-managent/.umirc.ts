@@ -1,10 +1,6 @@
 import { defineConfig } from 'umi';
+import { IPlugin, IConfig } from 'umi-types';
 
-export default defineConfig({
-  nodeModulesTransform: {
-    type: 'none',
-  },
-  routes: [
-    { path: '/', component: '@/pages/index' },
-  ],
-});
+import { config } from './configs'
+
+export default defineConfig(config) as IConfig;
