@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Spin, Space } from 'antd';
 export default ({children, spinning}) => {
   return(

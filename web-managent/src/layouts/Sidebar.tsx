@@ -1,13 +1,14 @@
-import React from 'react';
-// import Link from 'umi/link';
+
 import {withRouter, Link} from 'umi';
 import { Layout, Menu } from 'antd';
 import { connect } from 'dva';
 const { Sider } = Layout;
 const { SubMenu, Item } = Menu;
+// const { useEffect, useState } = React;
 const SideBar = ({ location, collapsed, isRemovedSidebar,  rem }) => {
   const selectKey = location.pathname;
   let width = isRemovedSidebar ? 0 : rem * 2.56;
+  // console.log(rem, 123)
   if (width < 170) width = 170;
   return (
     <Sider

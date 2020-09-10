@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+
 import { ConfigProvider, Layout } from 'antd';
 import { connect } from 'dva';
 // import cookie from 'cookie_js';
@@ -8,6 +8,7 @@ import 'moment/locale/zh-cn';
 import Header from './Header';
 import Sidebar from './Sidebar';
 moment.locale('zh-cn');
+const { useEffect, useState } = React;
 const BaseLayout = ({ children, dispatch }) => {
   const [count, setCount] = useState(0);
   const resize = () => {

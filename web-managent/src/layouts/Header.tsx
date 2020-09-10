@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Layout, Icon, Avatar, Tooltip, Popover, Row } from 'antd';
 import { connect } from 'dva';
 import { Pop, Box, SettingBox } from '@/styles/header'

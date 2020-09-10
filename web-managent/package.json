@@ -36,6 +36,7 @@
     },
     "devDependencies": {
         "cssnano": "^4.1.10",
+        "hard-source-webpack-plugin": "^0.13.1",
         "redux-logger": "^3.0.6"
     }
 }
