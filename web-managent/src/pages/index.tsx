@@ -1,7 +1,7 @@
 
 import styles from './index.less';
 
-export default () => {
+export default ():Object => {
   return (
     <div>
       <h1 className={styles.title}>Page 000</h1>

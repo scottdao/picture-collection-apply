@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export  const Pop = styled.div`
+export  const Pop:Object = styled.div`
   width: 150px;
   background: rgba(255, 255, 255, 1);
   display: flex;
@@ -44,13 +44,13 @@ export  const Pop = styled.div`
   }
 `;
 
-export const Box = styled.div`
+export const Box:Object = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 100%;
 `;
-export const SettingBox = styled.div`
+export const SettingBox:Object = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;

@@ -34,7 +34,7 @@ export const  config = {
   inlineLimit:50000,
 }
 
-config.chainWebpack=(conf, { env, webpack, createCSSRule })=> {
+config.chainWebpack=(conf?:Object, { webpack }) => {
   conf.plugins.delete('progress');
   // 模块全局引入
   const plu = [{ _:"lodash",  moment:'moment', React:"react"}]
