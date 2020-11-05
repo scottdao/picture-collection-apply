@@ -1,5 +1,5 @@
 
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+// import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import { routes } from './routes';
 import { template } from './template';
 const { NODE_ENV } =process.env
@@ -37,15 +37,15 @@ export const  config = {
 config.chainWebpack=(conf?:Object, { webpack }) => {
   conf.plugins.delete('progress');
   // 模块全局引入
-  const plu = [{ _:"lodash",  moment:'moment', React:"react"}]
+  const plu = [{ _:"lodash",  moment:'moment'}]
   conf.plugin('ProvidePlugin')
   .use(webpack.ProvidePlugin,plu)
-  conf.plugin('HardSourceWebpackPlugin')
-  .use(HardSourceWebpackPlugin, [{
-    configHash(webpackConfig) {
-      return process.env.NODE_ENV + '-' + process.env.BABEL_ENV;
-    }
-  }])// 开启缓存，进行二次构建优化
+  // conf.plugin('HardSourceWebpackPlugin')
+  // .use(HardSourceWebpackPlugin, [{
+  //   configHash(webpackConfig) {
+  //     return process.env.NODE_ENV + '-' + process.env.BABEL_ENV;
+  //   }
+  // }])// 开启缓存，进行二次构建优化
   if(NODE_ENV === 'production'){
     conf.merge({
       optimization: {

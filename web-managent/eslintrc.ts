@@ -1,3 +1,3 @@
-import fabric from '@umijs/fabric';
+// import fabric from '@umijs/fabric';
 
-export default fabric.eslint;
+// export default fabric.eslint;
