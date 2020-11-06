@@ -1,9 +1,11 @@
 
+import React from 'react';
 import { Layout, Icon, Avatar, Tooltip, Popover, Row } from 'antd';
 import { connect } from 'dva';
 import { Pop, Box, SettingBox } from '@/styles/header'
 
-const Header = ({ userInfo, dispatch, collapsed }) => {
+
+const Header = ({ userInfo, dispatch, collapsed }: any) => {
   const toggleSidebar = () => {
     dispatch({ type: 'layout/toggleSidebar', payload: { collapsed } });
   };
@@ -30,7 +32,7 @@ const Header = ({ userInfo, dispatch, collapsed }) => {
           {/* <Icon type="bell" style={{ fontSize: '16px', margin: '0 24px' }} /> */}
 
           <Popover
-            getPopupContainer={e => e.parentNode}
+           //  getPopupContainer = {e => e.parentNode}
             placement="bottomRight"
             trigger="click"
             content={
@@ -65,6 +67,6 @@ const Header = ({ userInfo, dispatch, collapsed }) => {
   );
 };
 
-export default connect(({ global, layout }) => ({
+export default connect(({ global, layout }: any) => ({
   collapsed: layout.collapsed,
 }))(Header);

@@ -24,6 +24,7 @@
         "@umijs/preset-react": "1.x",
         "@umijs/test": "^3.2.16",
         "axios": "^0.21.0",
+        "crypto-js": "^4.0.0",
         "dva-loading": "^3.0.20",
         "lint-staged": "^10.0.7",
         "lodash": "^4.17.20",
@@ -37,6 +38,7 @@
         "yorkie": "^2.0.0"
     },
     "devDependencies": {
+        "@types/crypto-js": "^4.0.1",
         "@types/hard-source-webpack-plugin": "^1.0.1",
         "@types/qs": "^6.9.5",
         "@types/styled-components": "^5.1.4",

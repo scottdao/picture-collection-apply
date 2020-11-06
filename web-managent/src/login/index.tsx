@@ -2,19 +2,10 @@
 
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { Tabs } from 'antd';
+const { TabPane } = Tabs;
 import Form from '@/components/common/Form';
 
-const tailLayout = {
-  wrapperCol: { offset: 6, span: 18 },
-};
-const layoutStyle = {
-  style:{
-    textAlign:'right'
-  }
-}
-const loginLayout = {
-  wrapperCol: { offset: 0, span: 24 },
-}
 const FormBox = styled.div`
    padding:30px;
   .ant-btn-primary{
@@ -30,22 +21,22 @@ const FormBox = styled.div`
     color:rgba(0,0,0,0.6);
   }
 `;
-const LoginIndex = () => {
+const formData = {
+  initialValues:{ remember: true, username:'scottLdy', password:"123456" },
+  layout:{
+    labelCol: { span:0, style:{textAlign:"right"} },
+    wrapperCol: { span: 24 },
+  },
+  encryption:{
+    field:['password'],
+    method:'SHA256'
+  },
   
-  const formData = {
-    initialValues:{ remember: true },
-    layout:{
-      labelCol: { span:0, style:{textAlign:"right"} },
-      wrapperCol: { span: 24 },
-    },
-    onFinish:(values: any)=>{
-      console.log('Success:', values);
-    },
-    onFinishFailed:(errorInfo: any)=>{
-      console.log('Failed:', errorInfo);
-    },
-    name:'basic',
-    FormItems:[
+  onFinishFailed:(errorInfo: any)=>{
+    console.warn('Failed:', errorInfo);
+  },
+  name:'login',
+  FormItems:[
     {
       item:{
         name:'username',
@@ -72,20 +63,36 @@ const LoginIndex = () => {
         prefix:'LockOutlined'
       }
     },
-    {
+    [{
       item:{
         name:'remember',
         valuePropName:'checked',
-        wrapperCol: { offset: 0, span: 24 },
+        // noStyle: true,
         style:{
-          textAlign:'right'
+          textAlign:'left',
+          display:"inline-block",
+          width:'50%'
         }
       },
       element:{
         name:'Checkbox',
         text:"记住密码"
       }
-    },
+    },{
+      item:{
+        name:'auto',
+        valuePropName:'checked',
+        style:{
+          textAlign:'right',
+          display:"inline-block",
+          width:'50%'
+        }
+      },
+      element:{
+        name:'Checkbox',
+        text:"自动登录"
+      }
+    }],
     {
       item:{
           wrapperCol: { offset: 0, span: 24 }
@@ -99,9 +106,24 @@ const LoginIndex = () => {
     }
   ]
 }
+const LoginIndex = ({history}: any) => {
+ // console.log(history)
   return (
-    <FormBox style={{height:'280px', width:'350px'}}>
-       <Form {...formData}/>
+    <FormBox style={{minHeight:'280px', minWidth:'350px'}}>
+       <Tabs defaultActiveKey="1"  centered>
+        <TabPane tab="登录" key="1">
+          <Form 
+            {...formData} 
+            onFinish={
+              (values: any)=>
+              {
+                console.log(values, 123321)
+                history.push('/index')           
+              }
+            }
+          />
+        </TabPane>
+      </Tabs>
     </FormBox>
   );
 };
