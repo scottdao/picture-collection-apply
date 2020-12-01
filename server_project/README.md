@@ -3,3 +3,4 @@
  - koa
  - node server
  - mysql
+ - py manage.py runserver
