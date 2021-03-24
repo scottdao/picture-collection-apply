@@ -31,12 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.admin',  # 管理员站点
+    'django.contrib.auth',  # 认证授权
+    'django.contrib.contenttypes',  # 内容类型框架
+    'django.contrib.sessions',  # 会话
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  # 静态文件框架
 ]
 
 MIDDLEWARE = [
@@ -75,8 +75,9 @@ WSGI_APPLICATION = 'server_project.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 可选值：django.db.backends.postgresql/ django.db.backends.mysql/  django.db.backends.oracle
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # 将数据库存到项目的根目录下
     }
 }
 
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'  # UTC
 
 USE_I18N = True
 
